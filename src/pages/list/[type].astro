@@ -2,23 +2,35 @@
 import type { GetStaticPaths } from "astro";
 import Layout from "../../layouts/Layout.astro";
 import WordCard from "../../components/WordCard.astro";
-import hsk1Data from "../../content/hsk1.json";
-import hsk2Data from "../../content/hsk2.json";
-import hsk3Data from "../../content/hsk3.json";
+import hsk1Data from "../../content/list/hsk1.json";
+import hsk2Data from "../../content/list/hsk2.json";
+import hsk3Data from "../../content/list/hsk3.json";
 import { GET } from '../api/[type].json'
 
+import { getCollection } from 'astro:content';
 
-export function getStaticPaths() {
-  return [
-    { params: { type: "hsk1", data: JSON.stringify(hsk1Data) , title: 'HSK1' } },
-    { params: { type: "hsk2", data: JSON.stringify(hsk1Data) , title: 'HSK2' } },
-    { params: { type: "hsk3", data: JSON.stringify(hsk1Data) , title: 'HSK3' } },
-  ];
-}
+
+export const getStaticPaths = (async() => {
+  const blogEntries = await getCollection('list');
+  console.log('blogEntries222', blogEntries)
+  
+  return blogEntries.map(item=>({
+    params: {title: item.id}
+  }))
+}) satisfies GetStaticPaths;
+
+// export function getStaticPaths() {
+//   return [
+//     { params: { type: "hsk1", data: JSON.stringify(hsk1Data) , title: 'HSK1' } },
+//     { params: { type: "hsk2", data: JSON.stringify(hsk1Data) , title: 'HSK2' } },
+//     { params: { type: "hsk3", data: JSON.stringify(hsk1Data) , title: 'HSK3' } },
+//   ];
+// }
 const { title } = Astro.params;
 const data = hsk1Data
-let response = await GET({params: {type: 'hsk1'}})
-console.log('response', response)
+console.log(Astro.params)
+// let response = await GET({params: {type: a}})
+// console.log('response', response)
 ---
 
 <Layout title="Welcome to Astro.">

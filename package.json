@@ -12,7 +12,10 @@
   "dependencies": {
     "@astrojs/check": "^0.8.0",
     "@astrojs/tailwind": "^5.1.0",
+    "@types/node": "^20.14.11",
     "astro": "^4.11.5",
+    "hanzi-writer": "^3.7.0",
+    "hanzi-writer-data": "^2.0.1",
     "tailwindcss": "^3.4.4",
     "typescript": "^5.5.3"
   }
