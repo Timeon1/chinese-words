@@ -1,5 +1,10 @@
 import { defineConfig } from 'vite'
 export default defineConfig({
+  resolve: {
+    alias: {
+      '@content': '/opt/buildhome/repo/src/content',
+    },
+  },
   build: {
     rollupOptions: {
       external: [
