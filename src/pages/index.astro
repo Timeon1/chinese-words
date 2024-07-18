@@ -2,13 +2,12 @@
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
 import { getCollection } from "astro:content";
-import LanguagePicker from "@components/LanguagePicker.astro";
-import { getLangFromUrl, useTranslations , useTranslatedPath} from "@i18n/utils";
+import { getLangFromUrl , useTranslatedPath} from "@i18n/utils";
 
 const allList = await getCollection("list");
 console.log('allList', allList)
 const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
+// const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 ---
 <!-- <meta http-equiv="refresh" content="0;url=/en/" /> -->
