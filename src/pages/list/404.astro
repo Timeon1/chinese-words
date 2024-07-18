@@ -1,8 +1,14 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+import Layout from "@layouts/Layout.astro";
+
+export const getStaticPaths = (async () => {
+  return {
+    params: { title:'404'},
+  }
+})
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="" desc="404">
   <main>
     <div>List 404</div>
   </main>

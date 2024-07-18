@@ -1,0 +1,49 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { allword } from "@content/allFile";
+import WordWriterNew from "@components/WordWriterNew.tsx";
+import allcharPinyin from "public/allcharPinyin.json";
+import chengyuTranslate from "public/changyutranslate.json";
+import WordsExplanations from "@components/WordsExplanations.astro";
+
+const { word } = Astro.params;
+
+export function getStaticPaths() {
+  return allword.map((item) => {
+    return { params: { word: item } };
+  });
+}
+---
+
+<Layout
+  title={`${word}-Chinese words`}
+  desc={`${word}-Chinese words explanations คำภาษาจีน means ${chengyuTranslate[word]?.en}`}
+>
+  <main>
+    <div>{word}</div>
+    <div class="flex flex-row justify-center space-x-4">
+      {
+        word.split("").map((item, index) => (
+          <div data-word={item} class="flex flex-col items-center">
+            <div class="text-xl">{allcharPinyin[item]?.pinyin || ""}</div>
+            <WordWriterNew client:only="react" word={item} index={index} />
+          </div>
+        ))
+      }
+    </div>
+    <div>
+      <h2 class="text-2xl py-4">解释</h2>
+      <div class="shadow-md rounded-md overflow-hidden">
+        <WordsExplanations type="en" desc={chengyuTranslate[word]?.en}/>
+        <WordsExplanations type="ja" desc={chengyuTranslate[word]?.ja}/>
+        <WordsExplanations type="th" desc={chengyuTranslate[word]?.th}/>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<!-- <style>
+  #character-target-div {
+    background-color: pink;
+  }
+</style> -->

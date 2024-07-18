@@ -1,0 +1,26 @@
+---
+import { getLangFromUrl } from "@i18n/utils";
+import LanguagePicker from "./LanguagePicker.astro";
+
+const lang = getLangFromUrl(Astro.url);
+---
+
+<header>
+  <nav class="md:relative lg:top-0 border-b-[1px]">
+    <div class="flex flex-row items-center justify-between py-4">
+      <div class="flex flex-row items-center">
+        <a class="ml-2 mr-4 md:text-xl font-bold" href="/"></a>
+        <div class="hidden md:block">
+          <div>
+            <span class="hover:bg-[rgb(var(--accent-light)) 30%] rounded p-2">
+              <a href={`/${lang}`}>Home</a>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-row items-center">
+        <LanguagePicker />
+      </div>
+    </div>
+  </nav>
+</header>

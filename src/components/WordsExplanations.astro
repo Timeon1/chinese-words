@@ -1,0 +1,16 @@
+---
+interface Props {
+  type: string;
+  desc: string;
+}
+
+const { type, desc } = Astro.props;
+---
+
+<h3 data-desc={desc}  class="md:text-xl bg-gray-100  p-2 text-blue-700">
+  {type} - {desc || ""}
+</h3>
+
+
+
+

@@ -1,49 +1,51 @@
 ---
 import type { GetStaticPaths } from "astro";
-import Layout from "../../layouts/Layout.astro";
-import WordCard from "../../components/WordCard.astro";
-import hsk1Data from "../../content/list/hsk1.json";
-import hsk2Data from "../../content/list/hsk2.json";
-import hsk3Data from "../../content/list/hsk3.json";
-import { GET } from '../api/[type].json'
+import Layout from "@layouts/Layout.astro";
+import WordCard from "@components/WordCard.astro";
+import { getCollection } from "astro:content";
 
-import { getCollection } from 'astro:content';
+// import { getLangFromUrl, useTranslations } from "@i18n/utils";
 
+// const lang = getLangFromUrl(Astro.url);
+// const t = useTranslations(lang);
 
-export const getStaticPaths = (async() => {
-  const blogEntries = await getCollection('list');
-  console.log('blogEntries222', blogEntries)
-  
-  return blogEntries.map(item=>({
-    params: {title: item.id}
-  }))
+export const getStaticPaths = (async () => {
+  const blogEntries = await getCollection("list");
+  console.log("blogEntries222", blogEntries);
+
+  return blogEntries.map((page) => {
+    const [lang, ...slug] = page.id.split('/');
+    console.log('slug' , slug.join('/'))
+    return  {
+    params: { title: page.id, type: page.id, lang, desc: page.data.desc , slug: slug.join('/') || undefined },
+    props: { jsonData: page.data },
+  }});
 }) satisfies GetStaticPaths;
 
-// export function getStaticPaths() {
-//   return [
-//     { params: { type: "hsk1", data: JSON.stringify(hsk1Data) , title: 'HSK1' } },
-//     { params: { type: "hsk2", data: JSON.stringify(hsk1Data) , title: 'HSK2' } },
-//     { params: { type: "hsk3", data: JSON.stringify(hsk1Data) , title: 'HSK3' } },
-//   ];
-// }
-const { title } = Astro.params;
-const data = hsk1Data
-console.log(Astro.params)
-// let response = await GET({params: {type: a}})
-// console.log('response', response)
+const { jsonData } = Astro.props;
+
+const {lang , slug , desc } = Astro.params
+
+
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Welcome to Astro." desc="">
   <main class="max-w-screen-xl">
     <div class="px-5 py-16 md:px-10 md:py-24 lg:py-25">
-      <h1 class="text-3xl font-bold md:text-5xl text-center mb-10">{title}</h1>
+      <h1 class="text-3xl font-bold md:text-5xl text-center mb-10">
+        {jsonData.title}
+      </h1>
       <p class="text-center md:text-xl text-gray-500">
-        Hanyu Shuiping Kaoshi(HSK 3.0) level-1 (Beginner) words
+        {desc}
       </p>
     </div>
 
     <div class="grid grid-cols-6 md:grid-cols-8">
-      {data.map((item) => <WordCard title={item} href={`/word/${item}`} />)}
+      {
+        jsonData.data.map((item) => (
+          <WordCard title={item} href={`/words/${item}`} />
+        ))
+      }
     </div>
   </main>
 </Layout>

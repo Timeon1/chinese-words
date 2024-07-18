@@ -1,31 +1,29 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Card from "../components/Card.astro";
+import Layout from "@layouts/Layout.astro";
+import Card from "@components/Card.astro";
 import { getCollection } from "astro:content";
-import LanguagePicker from "@components/LanguagePicker.astro";
-import { getLangFromUrl, useTranslations , useTranslatedPath} from "@i18n/utils";
 
 const allList = await getCollection("list");
-console.log('allList', allList)
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
-const translatePath = useTranslatedPath(lang);
 ---
-<!-- <meta http-equiv="refresh" content="0;url=/en/" /> -->
-<Layout title="" desc="">
+
+<Layout title="Welcome to Astro." desc="">
   <main>
-    <h1>Step by Step,<span class="text-gradient">Master Chinese Vocabulary</span> with Us!</h1>
+    <h1>一步一步，<span class="text-gradient">中文词汇</span>带你通!</h1>
     <p class="instructions">
-		Welcome to Chinese Learning Assistant! Our website is dedicated to helping foreigners effortlessly learn Chinese words and vocabulary. Whether you're a beginner or looking to expand your vocabulary, we provide rich resources and interactive tools for you. With our engaging and effective learning methods, you'll be able to grasp more Chinese vocabulary and improve your language skills. Join us now and embark on your journey to mastering Chinese!
+      欢迎来到汉语学习助手！我们的网站致力于帮助外国朋友轻松学习中文单词和词汇。无论你是初学者还是想要提高你的词汇量，我们都为你提供了丰富的资源和互动工具。通过我们的有趣和有效的学习方法，你将能够掌握更多中文词汇，提高你的语言能力。赶快加入我们，开始你的中文学习之旅吧！
     </p>
-    <h2>Chinese word classification table</h2>
+    <!-- <p class="instructions">
+			To get started, open the directory <code>src/pages</code> in your project.<br />
+			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
+		</p> -->
+    <h2>中文词分类表</h2>
     <ul role="list" class="link-card-grid">
       {
         allList.map((item) => (
           <Card
-            href={translatePath(`/list/${item.id}`,lang)}
+            href={`/${item.collection}/${item.id}`}
             title={`${item.data.title}`}
-            body={item.data.desc}
+            body="Learn how Astro works and explore the official API docs."
           />
         ))
       }
@@ -33,6 +31,16 @@ const translatePath = useTranslatedPath(lang);
         href="https://astro.build/integrations/"
         title="Integrations"
         body="Supercharge your project with new frameworks and libraries."
+      />
+      <Card
+        href="https://astro.build/themes/"
+        title="Themes"
+        body="Explore a galaxy of community-built starter themes."
+      />
+      <Card
+        href="https://astro.build/chat/"
+        title="Community"
+        body="Come say hi to our amazing Discord community. ❤️"
       />
     </ul>
   </main>

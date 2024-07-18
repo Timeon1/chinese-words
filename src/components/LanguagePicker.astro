@@ -1,0 +1,13 @@
+---
+import { languages } from '../i18n/ui';
+
+
+const url = Astro.url
+---
+<select name="language" class="hidden md:block language-select bg-transparent">
+  {Object.entries(languages).map(([lang, label]) => (
+    <option value={`/${lang}/${url}`}>
+      {label}
+    </option>
+  ))}
+</select>

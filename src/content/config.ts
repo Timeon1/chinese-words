@@ -3,7 +3,8 @@ const listCollection = defineCollection({
     type: 'data',
     schema: z.object({
         title: z.string(),
-        list: z.string()
+        desc: z.string(),
+        data: z.array(z.string())
     })
 });
 
