@@ -22,7 +22,7 @@ export function getStaticPaths() {
 >
   <main>
     <div>{word}</div>
-    <div class="flex flex-row justify-center space-x-4">
+    <div class="flex flex-wrap flex-row justify-center space-x-4">
       {
         word.split("").map((item:string, index:number) =>  (
           /[\u4e00-\u9fa5]/.test(item) && <div data-word={item} class="flex flex-col items-center">
