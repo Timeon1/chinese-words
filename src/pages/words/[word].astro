@@ -16,8 +16,9 @@ export function getStaticPaths() {
 ---
 
 <Layout
-  title={`${word}-Chinese words`}
-  desc={`${word}-Chinese words explanations คำภาษาจีน means ${chengyuTranslate[word]?.en}`}
+  title={`${word} Chinese words`}
+  desc={`${word} ${word.length == 4 ? 'Chengyu 成語 成语 chengyu four-character idioms':''} Chinese words explanations คำภาษาจีน means ${chengyuTranslate[word]?.en || ''}`}
+  keywords={`${word.length == 4 ? 'Chengyu 成語 成语 chengyu four-character idioms' : word}`}
 >
   <main>
     <div>{word}</div>

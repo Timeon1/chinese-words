@@ -4,9 +4,10 @@ import { getLangFromUrl } from '../i18n/utils';
 interface Props {
 	title: string;
 	desc: string
+	keywords?: string
 }
 
-const { title , desc } = Astro.props;
+const { title , desc , keywords } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
 
@@ -16,11 +17,12 @@ const lang = getLangFromUrl(Astro.url);
 <html lang={lang}>
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content={desc} />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<meta name="description" content={desc} />
+		<meta name="keywords" content={keywords} />
 	</head>
 	<body class="font-serif max-w-screen-xl mx-auto min-h-screen px-4">
 		<Header/>

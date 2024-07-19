@@ -24,19 +24,18 @@ export const getStaticPaths = (async () => {
 
 const { jsonData } = Astro.props;
 
-const { desc } = Astro.params
-
+// const { desc } = Astro.params
 
 ---
 
-<Layout title="Welcome to Astro." desc="">
+<Layout title={`${jsonData.title}`} desc={`${jsonData.desc}`} keywords={`${jsonData.title.includes('hsk') ? 'Chinese Tests':'Chengyu 成語 成语 chengyu four-character idioms'}`}>
   <main class="max-w-screen-xl">
     <div class="px-5 py-16 md:px-10 md:py-24 lg:py-25">
       <h1 class="text-3xl font-bold md:text-5xl text-center mb-10">
         {jsonData.title}
       </h1>
       <p class="text-center md:text-xl text-gray-500">
-        {desc}
+        {jsonData.desc}
       </p>
     </div>
 
