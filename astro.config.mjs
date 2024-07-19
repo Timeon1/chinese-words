@@ -7,7 +7,9 @@ import cloudflare from "@astrojs/cloudflare";
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind(), react()],
-  site: 'https://www.my-site.dev',
+  // root: new URL("./foo", import.meta.url).toString(),
+  publicDir: new URL("./public", import.meta.url).toString(),
+
   output: 'hybrid',
   build: {
     rollupOptions: {

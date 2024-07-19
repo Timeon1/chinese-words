@@ -1,3 +1,4 @@
+/// <reference path="../file:/Users/weiyan/Desktop/yoyo/TEST/chinese-words/foo/.astro/types.d.ts" />
 /// <reference path="../.astro/types.d.ts" />
 /// <reference types="astro/client" />
 declare module "src/content/list/hsk1.json";
