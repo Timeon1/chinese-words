@@ -1,71 +1,89 @@
 ---
-import Header from '@components/Header.astro';
-import { getLangFromUrl } from '../i18n/utils';
+import Header from "@components/Header.astro";
+import { getLangFromUrl } from "../i18n/utils";
 interface Props {
-	title: string;
-	desc: string
-	keywords?: string
+  title: string;
+  desc: string;
+  keywords?: string;
 }
 
-const { title , desc , keywords } = Astro.props;
+const { title, desc, keywords } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
-
 ---
 
 <!doctype html>
 <html lang={lang}>
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-		<meta name="description" content={desc} />
-		<meta name="keywords" content={keywords} />
-		<meta name="robots" content="all"/>
-	</head>
-	<body class="font-serif max-w-screen-xl mx-auto min-h-screen px-4">
-		<Header/>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={desc} />
+    <meta name="keywords" content={keywords} />
+    <meta name="robots" content="all" />
+
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-PE7NGWHK3Z"></script>
+	<script is:inline>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'G-PE7NGWHK3Z');
+	</script>
+
+
+  </head>
+  <body class="font-serif max-w-screen-xl mx-auto min-h-screen px-4">
+    <Header />
+    <slot />
+  </body>
 </html>
 <style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: Noto Serif SC,ui-serif,Georgia,Cambria,"Times New Roman",Times,serif;
-		background: #13151a;
-		background-size: 224px;
-		color: white;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
-	main {
-		margin: auto;
-		padding: 1rem;
-		width: 800px;
-		max-width: calc(100% - 2rem);
-		color: white;
-		font-size: 20px;
-		line-height: 1.6;
-	}
+  :root {
+    --accent: 136, 58, 234;
+    --accent-light: 224, 204, 250;
+    --accent-dark: 49, 10, 101;
+    --accent-gradient: linear-gradient(
+      45deg,
+      rgb(var(--accent)),
+      rgb(var(--accent-light)) 30%,
+      white 60%
+    );
+  }
+  html {
+    font-family:
+      Noto Serif SC,
+      ui-serif,
+      Georgia,
+      Cambria,
+      "Times New Roman",
+      Times,
+      serif;
+    background: #13151a;
+    background-size: 224px;
+    color: white;
+  }
+  code {
+    font-family:
+      Menlo,
+      Monaco,
+      Lucida Console,
+      Liberation Mono,
+      DejaVu Sans Mono,
+      Bitstream Vera Sans Mono,
+      Courier New,
+      monospace;
+  }
+  main {
+    margin: auto;
+    padding: 1rem;
+    width: 800px;
+    max-width: calc(100% - 2rem);
+    color: white;
+    font-size: 20px;
+    line-height: 1.6;
+  }
 </style>
