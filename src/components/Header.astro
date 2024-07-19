@@ -1,8 +1,8 @@
 ---
-import { getLangFromUrl } from "@i18n/utils";
+// import { getLangFromUrl } from "@i18n/utils";
 import LanguagePicker from "./LanguagePicker.astro";
 
-const lang = getLangFromUrl(Astro.url);
+// const lang = getLangFromUrl(Astro.url);
 ---
 
 <header>
@@ -13,7 +13,7 @@ const lang = getLangFromUrl(Astro.url);
         <div class="hidden md:block">
           <div>
             <span class="hover:bg-[rgb(var(--accent-light)) 30%] rounded p-2">
-              <a href={`/${lang}`}>Home</a>
+              <a href={`/`}>Home</a>
             </span>
           </div>
         </div>
