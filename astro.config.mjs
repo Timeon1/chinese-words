@@ -1,15 +1,14 @@
 import { defineConfig } from 'astro/config';
 import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
-
 import cloudflare from "@astrojs/cloudflare";
+
+import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), react()],
-  // root: new URL("./foo", import.meta.url).toString(),
-  publicDir: new URL("./public", import.meta.url).toString(),
-
+  site:"https://chinese-words-bi5.pages.dev",
+  integrations: [tailwind(), react(), sitemap()],
   output: 'hybrid',
   build: {
     rollupOptions: {
@@ -17,7 +16,7 @@ export default defineConfig({
     }
   },
   adapter: cloudflare({
-    platformProxy:{
+    platformProxy: {
       enabled: true
     }
   })
