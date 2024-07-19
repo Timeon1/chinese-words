@@ -11,11 +11,9 @@ import { getCollection } from "astro:content";
 
 export const getStaticPaths = (async () => {
   const blogEntries = await getCollection("list");
-  console.log("blogEntries222", blogEntries);
 
   return blogEntries.map((page) => {
     const [lang, ...slug] = page.id.split('/');
-    console.log('slug' , slug.join('/'))
     return  {
     params: { title: page.id, type: page.id, lang, desc: page.data.desc , slug: slug.join('/') || undefined },
     props: { jsonData: page.data },
@@ -31,7 +29,7 @@ const { jsonData } = Astro.props;
 <Layout title={`${jsonData.title}`} desc={`${jsonData.desc}`} keywords={`${jsonData.title.includes('hsk') ? 'Chinese Tests':'Chengyu 成語 成语 chengyu four-character idioms'}`}>
   <main class="max-w-screen-xl">
     <div class="px-5 py-16 md:px-10 md:py-24 lg:py-25">
-      <h1 class="text-3xl font-bold md:text-5xl text-center mb-10">
+      <h1 class="text-[2rem] font-bold md:text-[4rem] text-center mb-10">
         {jsonData.title}
       </h1>
       <p class="text-center md:text-xl text-gray-500">
@@ -39,7 +37,7 @@ const { jsonData } = Astro.props;
       </p>
     </div>
 
-    <div class="grid grid-cols-6 md:grid-cols-7">
+    <div class="grid grid-cols-3 sm:grid-auto-cols-6  md:grid-cols-7">
       {
         jsonData.data.map((item) => (
           <WordCard title={item} href={`/words/${item}`} />
@@ -67,7 +65,6 @@ const { jsonData } = Astro.props;
     z-index: -1;
   }
   h1 {
-    font-size: 4rem;
     font-weight: 700;
     line-height: 1;
     text-align: center;
