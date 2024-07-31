@@ -1,3 +1,1 @@
 User-agent: *
-Allow: /
-Sitemap: https://chinese-words-bi5.pages.dev/sitemap-0.xml
