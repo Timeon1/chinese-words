@@ -15,7 +15,8 @@ export default defineConfig({
   build: {
     rollupOptions: {
       external: []
-    }
+    },
+    format: 'file'
   },
   // adapter: cloudflare({
   //   platformProxy: {
