@@ -6,9 +6,11 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site:"https://chinese-words-bi5.pages.dev",
+  site:"https://chinese-words-bi5.pages.dev/",
   trailingSlash: 'never',
-  integrations: [sitemap(),tailwind(), react()],
+  integrations: [sitemap({
+    lastmod: new Date('2024-06-24'),
+  }),tailwind(), react()],
   output: 'static',
   build: {
     rollupOptions: {
