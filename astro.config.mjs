@@ -6,7 +6,7 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site:"https://chinese-words-bi5.pages.dev/",
+  site:"https://chinesewords.info",
   trailingSlash: 'never',
   integrations: [sitemap({
     lastmod: new Date('2024-06-24'),
