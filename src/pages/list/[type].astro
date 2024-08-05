@@ -37,7 +37,7 @@ const { jsonData } = Astro.props;
       </p>
     </div>
 
-    <div class="grid grid-cols-3 sm:grid-auto-cols-6  md:grid-cols-7">
+    <div class={`grid grid-cols-3   ${jsonData.title == 'xiehouyu' ? 'md:grid-cols-4 sm:grid-auto-cols-3' :'md:grid-cols-7 sm:grid-auto-cols-6'}`}>
       {
         jsonData.data.map((item) => (
           <WordCard title={item} href={`/words/${item}`} />

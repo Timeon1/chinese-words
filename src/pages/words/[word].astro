@@ -4,6 +4,7 @@ import { allword } from "@content/allFile";
 import WordWriterNew from "@components/WordWriterNew.tsx";
 import allcharPinyin from "public/allcharPinyin.json";
 import chengyuTranslate from "public/changyutranslate.json";
+import xiehouyuTranslate from "public/xiehouyutranslate.json";
 import WordsExplanations from "@components/WordsExplanations.astro";
 
 const { word } = Astro.params;
@@ -17,8 +18,8 @@ export function getStaticPaths() {
 
 <Layout
   title={`${word} in English Explanation ${word.length == 4 ? ' Chinese chengyu':' Chinese words'}`}
-  desc={`${word} ${word.length == 4 ? 'Chengyu 成語 成语 chengyu four-character idioms':''} English Chinese words explanations คำภาษาจีน means ${chengyuTranslate[word]?.en || ''}`}
-  keywords={`${word.length == 4 ? 'Chengyu 成語 成语 chengyu four-character idioms' : word}`}
+  desc={`${word} ${word.length == 4 ? 'Chengyu 成語 成语 chengyu four-character idioms':''} ${word.length > 4 ? 'Chinese idiomatic expressions Two-part sayings':''} explanations คำภาษาจีน means ${chengyuTranslate[word]?.en || xiehouyuTranslate[word]?.en}`}
+  keywords={`${word.length == 4 ? 'Chengyu 成語 成语 chengyu four-character idioms' : word} Traditional Chinese sayings Two-part sayings`}
 >
   <main>
     <div>{word}</div>
@@ -35,9 +36,9 @@ export function getStaticPaths() {
     <div>
       <h2 class="text-2xl py-4">Explanations</h2>
       <div class="shadow-md rounded-md overflow-hidden">
-        <WordsExplanations type="en" desc={chengyuTranslate[word]?.en}/>
-        <WordsExplanations type="ja" desc={chengyuTranslate[word]?.ja}/>
-        <WordsExplanations type="th" desc={chengyuTranslate[word]?.th}/>
+        <WordsExplanations type="en" desc={chengyuTranslate[word]?.en || xiehouyuTranslate[word]?.en}/>
+        <WordsExplanations type="ja" desc={chengyuTranslate[word]?.ja || xiehouyuTranslate[word]?.ja}/>
+        <WordsExplanations type="th" desc={chengyuTranslate[word]?.th || xiehouyuTranslate[word]?.th}/>
       </div>
     </div>
   </main>
