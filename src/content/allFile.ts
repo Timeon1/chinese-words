@@ -4,7 +4,7 @@ import hsk1 from "public/list/hsk1.json";
 // import hsk4 from "public/list/hsk4.json";
 // import hsk5 from "public/list/hsk5.json";
 // import hsk6 from "public/list/hsk6.json";
-import hsk7 from "public/list/hsk7-9.json";
+// import hsk7 from "public/list/hsk7-9.json";
 // import allchar from "public/list/allchar.json";
 import chengyu from "public/list/chengyu.json";
 import xiehouyu from "public/list/xiehouyu.json"
