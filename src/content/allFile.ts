@@ -7,11 +7,12 @@ import hsk6 from "public/list/hsk6.json";
 import hsk7 from "public/list/hsk7-9.json";
 // import allchar from "public/list/allchar.json";
 import chengyu from "public/list/chengyu.json";
+import xiehouyu from "public/list/xiehouyu.json"
 
 // export default {
 //   allword: [...hsk1, ...hsk2, ...hsk3, ...hsk4, ...hsk5, ...hsk6, ...hsk7],
 //   fileList: [hsk1, hsk2, hsk3, hsk4, hsk5, hsk6, hsk7],
 // };
-export const allword = [...hsk1.data,  ...hsk4.data, ...hsk5.data, ...hsk6.data, ...hsk7.data,  ...chengyu.data]
+export const allword = [...hsk1.data,  ...hsk4.data, ...hsk5.data, ...hsk6.data, ...hsk7.data,  ...chengyu.data, ...xiehouyu.map(item=> `${item.riddle}-${item.answer}`)]
 console.log('allword.length', allword.length)
 // export const fileList = [hsk1, hsk2, hsk3, hsk4, hsk5, hsk6, hsk7]
