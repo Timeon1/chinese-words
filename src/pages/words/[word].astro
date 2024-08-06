@@ -19,7 +19,7 @@ export function getStaticPaths() {
 <Layout
   title={`${word} in English Explanation ${word.length == 4 ? ' Chinese chengyu':' Chinese words'}`}
   desc={`${word} ${word.length == 4 ? 'Chengyu 成語 成语 chengyu four-character idioms':''} ${word.length > 4 ? 'Chinese idiomatic expressions Two-part sayings':''} explanations คำภาษาจีน means ${chengyuTranslate[word]?.en || xiehouyuTranslate[word]?.en}`}
-  keywords={`${word.length == 4 ? 'Chengyu 成語 成语 chengyu four-character idioms' : word} Traditional Chinese sayings Two-part sayings`}
+  keywords={`${word.length == 4 ? 'Chengyu 成語 成语 chengyu four-character idioms' : word} 中国語 Traditional Chinese sayings Two-part sayings`}
 >
   <main>
     <div>{word}</div>
