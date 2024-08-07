@@ -6,7 +6,7 @@ import allcharPinyin from "public/allcharPinyin.json";
 import chengyuTranslate from "public/changyutranslate.json";
 import xiehouyuTranslate from "public/xiehouyutranslate.json";
 import WordsExplanations from "@components/WordsExplanations.astro";
-
+import Audio from "@components/Audio.astro";
 const { word } = Astro.params;
 
 export function getStaticPaths() {
@@ -22,7 +22,7 @@ export function getStaticPaths() {
   keywords={`${word.length == 4 ? 'Chengyu 成語 成语 chengyu four-character idioms' : word} 中国語 Traditional Chinese sayings Two-part sayings`}
 >
   <main>
-    <div>{word}</div>
+    <div class="flex items-center space-x-2"><span>{word}</span><Audio word={word} /></div>
     <div class="flex flex-wrap flex-row justify-center">
       {
         word.split("").map((item:string, index:number) =>  (
@@ -43,9 +43,3 @@ export function getStaticPaths() {
     </div>
   </main>
 </Layout>
-
-<!-- <style>
-  #character-target-div {
-    background-color: pink;
-  }
-</style> -->

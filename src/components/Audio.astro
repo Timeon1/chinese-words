@@ -1,0 +1,26 @@
+---
+interface Props {
+  word: string;
+}
+import suoundSvg from "../icons/sound.svg";
+const { word } = Astro.props;
+---
+
+<img
+  data-word={word}
+  class="w-6 h-6 audio-word cursor-pointer bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full"
+  src={suoundSvg.src}
+  alt={`${word} sound`}
+/>
+
+<script>
+  document.querySelectorAll(".audio-word")?.forEach((item)=>{
+    item.addEventListener("click", (e: any) => {
+    const word = e?.target?.dataset?.word;
+    if (word) {
+      const voice = new SpeechSynthesisUtterance(word);
+      speechSynthesis.speak(voice);
+    }
+  })
+  });
+</script>

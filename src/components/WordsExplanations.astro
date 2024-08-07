@@ -3,13 +3,13 @@ interface Props {
   type: string;
   desc: string;
 }
-
+import Audio from './Audio.astro';
 const { type, desc } = Astro.props;
 ---
+  <div data-desc={desc}  class="flex items-center space-x-2 words-desc md:text-xl bg-gray-100  p-2 text-blue-700">
+    <h3>{type} - {desc || ""}</h3> <Audio word={desc}/>
+  </div>
 
-<h3 data-desc={desc}  class="words-desc md:text-xl bg-gray-100  p-2 text-blue-700">
-  {type} - {desc || ""}
-</h3>
 
 <script>
   const wordsDesc = document.querySelectorAll('h3.words-desc')
